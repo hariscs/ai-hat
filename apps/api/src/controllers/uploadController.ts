@@ -24,7 +24,7 @@ export const upload_controller = async (
       fs.mkdirSync(output_directory)
     }
 
-    const output_video_path = `./videos/watermarked-${Date.now()}.mp4`
+    const output_video_path = `./videos/watermarked.mp4`
 
     const readable_stream = new Readable()
     readable_stream.push(buffer)
@@ -34,7 +34,7 @@ export const upload_controller = async (
     ffmpeg()
       .input(readable_stream)
       .input(watermark_path)
-      .complexFilter(['overlay=10:10'])
+      .complexFilter(['overlay=(W-w)/2:(H-h)/2'])
       .output(output_video_path)
       .on('end', () => {
         console.log('Watermark applied successfully')

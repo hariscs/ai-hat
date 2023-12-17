@@ -1,9 +1,9 @@
 /* eslint-disable react/function-component-definition */
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import './styles.css'
+import video from '/Users/haris/batcave/ai-hat/apps/api/videos/watermarked.mp4'
 
 const FileUpload: React.FC = () => {
-  const [file, setFile] = useState<File | null>(null)
   const [watermarkedVideoUrl, setWatermarkedVideoUrl] = useState<string | null>(
     null
   )
@@ -14,7 +14,6 @@ const FileUpload: React.FC = () => {
     e.preventDefault()
     const selectedFile = e.target.files?.[0]
     if (selectedFile) {
-      setFile(selectedFile)
       setWatermarkedVideoUrl(null)
       setError(null)
       setLoading(true)
@@ -64,24 +63,22 @@ const FileUpload: React.FC = () => {
       {loading ? <p className='loading-message'>Uploading...</p> : null}
       {error ? <p className='error-message'>{error}</p> : null}
 
-      {/* {watermarkedVideoUrl && ( */}
       <div className='video-container'>
-        <h2>Watermarked Video</h2>
-        <video
-          autoPlay
-          className='watermarked-video'
-          controls
-          muted
-          width='400'
-        >
-          <source src={watermarkedVideoUrl} type='video/mp4' />
-          {/* <source
-            src=''
-            type='video/mp4'
-          /> */}
-        </video>
+        {watermarkedVideoUrl ? (
+          <div className='video_container'>
+            <h2>Watermarked Video</h2>
+            <video
+              autoPlay
+              className='watermarked-video'
+              controls
+              muted
+              width='400'
+            >
+              <source src={video} type='video/mp4' />
+            </video>
+          </div>
+        ) : null}
       </div>
-      {/* )} */}
     </div>
   )
 }
