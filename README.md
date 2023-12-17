@@ -11,21 +11,27 @@ Before running the application, ensure you have the following installed on your 
 
 ## Running the app
 
+1. Clone the repository:
+
+```sh
+git clone git@github.com:hariscs/ai-hat.git
+```
+
 Run the following commands:
 
-1. Install dependencies
+2. Install dependencies
 
 ```sh
 npm install
 ```
 
-2. Set the path to the ffmpeg executable in _apps/api/src/controllers/uploadController.ts_. Update the following line with the correct path:
+3. Set the path to the ffmpeg executable in _apps/api/src/controllers/uploadController.ts_. Update the following line with the correct path:
 
 ```js
 ffmpeg.setFfmpegPath('/path/to/your/ffmpeg')
 ```
 
-3. Set the path to the ffmpeg executable in server.ts. Update the following line with the correct path:
+4. Set the path to the ffmpeg executable in server.ts. Update the following line with the correct path:
 
 ```sh
 npm run dev
