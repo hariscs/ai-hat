@@ -1,0 +1,31 @@
+.file-upload-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.file-input-label {
+  display: block;
+  margin-top: 10px;
+}
+
+.loading-message {
+  color: #0066cc;
+}
+
+.error-message {
+  color: #ff0000;
+}
+
+.video-container {
+  margin-top: 20px;
+}
+
+.watermarked-video {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 10px;
+}
