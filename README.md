@@ -1,39 +1,35 @@
-# Turborepo kitchen sink starter
+# AI Hat
 
-This is an official starter Turborepo with multiple meta-frameworks all working in harmony and sharing packages.
+A simple application built with Node.js, Express, and ffmpeg using turborepo that allows users to add watermarks to videos. Users can upload a video, and the server applies a watermark to the video using ffmpeg.
 
-This example also shows how to use [Workspace Configurations](https://turbo.build/repo/docs/core-concepts/monorepos/configuring-workspaces).
+## Prerequisites
 
-## Using this example
+Before running the application, ensure you have the following installed on your system:
 
-Run the following command:
+- Node.js
+- ffmpeg
+
+## Running the app
+
+Run the following commands:
+
+1. Install dependencies
 
 ```sh
-npx create-turbo@latest -e kitchen-sink
+npm install
 ```
 
-## What's inside?
+2. Set the path to the ffmpeg executable in _apps/api/src/controllers/uploadController.ts_. Update the following line with the correct path:
 
-This Turborepo includes the following packages and apps:
+```js
+ffmpeg.setFfmpegPath('/path/to/your/ffmpeg')
+```
 
-### Apps and Packages
+3. Set the path to the ffmpeg executable in server.ts. Update the following line with the correct path:
 
-- `api`: an [Express](https://expressjs.com/) server
-- `storefront`: a [Next.js](https://nextjs.org/) app
-- `admin`: a [Vite](https://vitejs.dev/) single page app
-- `blog`: a [Remix](https://remix.run/) blog
-- `@repo/logger`: isomorphic logger (a small wrapper around console.log)
-- `@repo/ui`: a dummy React UI library (which contains a single `<CounterButton>` component)
-- `scripts`: Jest and ESLint configurations
-- `@repo/typescript-config`: tsconfig.json's used throughout the monorepo
+```sh
+npm run dev
+```
 
-Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Jest](https://jestjs.io) test runner for all things JavaScript
-- [Prettier](https://prettier.io) for code formatting
+This will start the app, api http://localhost:5001 and the frontend on http://localhost:3001.
+To test the app use a sample video from the _apps/frontend/public/samples/train.mp4_
