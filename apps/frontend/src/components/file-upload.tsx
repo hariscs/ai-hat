@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import React, { useState } from 'react'
 import './styles.css'
 
@@ -11,7 +12,7 @@ const FileUpload: React.FC = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
-    const selectedFile = e?.target?.files?.[0]
+    const selectedFile = e.target.files?.[0]
     if (selectedFile) {
       setFile(selectedFile)
       setWatermarkedVideoUrl(null)
@@ -28,8 +29,8 @@ const FileUpload: React.FC = () => {
         .then((response) => response.json())
         .then((data) => {
           console.log('Upload successful:', data)
-          if (data.watermarkedVideoUrl) {
-            setWatermarkedVideoUrl(data.watermarkedVideoUrl)
+          if (data.watermarked_video_url) {
+            setWatermarkedVideoUrl(data.watermarked_video_url)
             setError(null)
           } else {
             setError('Failed to retrieve the watermarked video URL.')
@@ -49,36 +50,35 @@ const FileUpload: React.FC = () => {
     <div className='file-upload-container'>
       <h1>File Upload</h1>
 
-      <label htmlFor='videoFile' className='file-input-label'>
+      <label className='file-input-label' htmlFor='videoFile'>
         Choose a video file:
         <input
-          type='file'
-          id='videoFile'
           accept='video/*'
+          id='videoFile'
           onChange={handleFileChange}
           required
+          type='file'
         />
       </label>
 
-      {loading && <p className='loading-message'>Uploading...</p>}
-      {error && <p className='error-message'>{error}</p>}
+      {loading ? <p className='loading-message'>Uploading...</p> : null}
+      {error ? <p className='error-message'>{error}</p> : null}
 
       {/* {watermarkedVideoUrl && ( */}
       <div className='video-container'>
         <h2>Watermarked Video</h2>
         <video
-          width='400'
-          controls
           autoPlay
-          muted
           className='watermarked-video'
+          controls
+          muted
+          width='400'
         >
           <source src={watermarkedVideoUrl} type='video/mp4' />
           {/* <source
             src=''
             type='video/mp4'
           /> */}
-          Your browser does not support the video tag.
         </video>
       </div>
       {/* )} */}
